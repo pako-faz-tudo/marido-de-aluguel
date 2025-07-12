@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaKo Faz Tudo – Marido de Aluguel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Variáveis CSS para cores*/
+        :root {
+            --primary-red-dark: #941B0C; /* Vermelho escuro para destaques */
+            --secondary-golden-warm: #DAA520; /* Dourado/Amarelo quente, ligeiramente mais escuro para elegância */
+            --background-light: #F8F8F8; /* Bege muito claro, quase branco */
+            --text-dark: #333333; /* Texto principal mais escuro */
+            --text-light: #666666; /* Texto secundário */
+            --header-bg: #FFFFFF; /* Fundo do cabeçalho */
+            --section-bg-light: #FFFFFF; /* Fundo de seções claras */
+            --footer-bg: #2C3E50; /* Azul marinho escuro para o rodapé (inspirado BB) */
+            --button-whatsapp: #25D366; /* Verde WhatsApp */
+            --button-whatsapp-hover: #1DA851;
+            --border-color: #E0E0E0; /* Cor de borda suave */
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra mais suave */
+            --accent-blue: #007bff; /* Um toque de azul para links ou elementos extras, se necessário */
+        }
+
+        /* Reset e base*/
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth; /* Rolagem suave para âncoras */
+        }
+
+        /* Utilitários*/
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Cabeçalho*/
+        header {
+            background-color: var(--header-bg);
+            padding: 15px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: flex-start; /* Alinha o logo à esquerda */
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--primary-red-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .logo:hover {
+            color: var(--secondary-golden-warm);
+        }
+
+        /* Navegação (Removida do HTML, mas mantida no CSS para referência se necessário) */
+        nav {
+            display: none; /* Oculta a navegação no cabeçalho */
+        }
+
+        /* Botão WhatsApp Fixo no canto inferior direito*/
+        .whatsapp-fixed-button {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--button-whatsapp);
+            color: white;
+            border-radius: 50%;
+            width: 65px;
+            height: 65px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5em;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+            z-index: 1001;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            text-decoration: none; /* Remover sublinhado */
+        }
+
+        .whatsapp-fixed-button:hover {
+            transform: scale(1.1);
+            background-color: var(--button-whatsapp-hover);
+        }
+
+        .whatsapp-fixed-button img {
+            width: 85%;
+            height: 85%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+
+        /* Seção Hero (Banner Principal)*/
+        .hero {
+            position: relative;
+            text-align: center;
+            color: white;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.6); /* Overlay escuro */
+            min-height: 500px; /* Altura mínima para o banner */
+        }
+
+        .hero::before {
+            content: "";
+            /* IMAGEM DO BANNER: SUBSTITUA AQUI POR 'banner-help.jpg' APÓS SALVAR SUA IMAGEM */
+            background-image: url('https://picsum.photos/1920/1080?random=1'); 
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: brightness(0.6); /* Escurece a imagem de fundo para texto legível */
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            color: var(--secondary-golden-warm);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero p {
+            font-size: 1.6em;
+            margin-bottom: 40px;
+            max-width: 900px;
+            font-weight: 300;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-primary {
+            display: inline-block;
+            background-color: var(--button-whatsapp);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex; /* Para alinhar o ícone com o texto */
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .button-primary:hover {
+            background-color: var(--button-whatsapp-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Seções de Conteúdo*/
+        section {
+            padding: 80px 0;
+            background-color: var(--section-bg-light);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-light);
+            border-radius: 12px; /* Borda arredondada para todas as seções */
+            overflow: hidden; /* Garante que o box-shadow se aplique corretamente */
+        }
+
+        section:nth-of-type(even) { /* Cores alternadas para melhor legibilidade */
+            background-color: var(--background-light);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--primary-red-dark);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8em;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-golden-warm);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Seção de Serviços*/
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .service-item {
+            background-color: #fff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .service-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-item i {
+            font-size: 4em;
+            color: var(--primary-red-dark);
+            margin-bottom: 20px;
+        }
+
+        .service-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-red-dark);
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .service-item p {
+            font-size: 1em;
+            color: var(--text-light);
+        }
+
+        .service-highlight-image-wrapper {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .service-highlight-image-wrapper img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 5px solid var(--secondary-golden-warm);
+            display: block; /* Remove espaço extra abaixo da imagem */
+            margin: 0 auto; /* Centraliza a imagem */
+        }
+
+        /* Tabela de Preços*/
+        .price-table-container {
+            background-color: var(--section-bg-light);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-light);
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .price-table th, .price-table td {
+            padding: 18px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .price-table th {
+            background-color: var(--primary-red-dark);
+            color: white;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1em;
+        }
+
+        .price-table tr:nth-child(even) {
+            background-color: var(--background-light);
+        }
+
+        .price-table td {
+            font-size: 1.05em;
+        }
+
+        .price-table .note {
+            font-size: 0.95em;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #FFF3CD; /* Amarelo claro para destaque da nota */
+            border-left: 5px solid #FFC107;
+            border-radius: 5px;
+        }
+
+        /* Cards de Informação (Horários, Área, Quem Somos)*/
+        .info-card {
+            background-color: var(--section-bg-light);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-light);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .info-card p {
+            font-size: 1.15em;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+        .info-card i {
+            color: var(--primary-red-dark);
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Contato Rápido*/
+        .quick-contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .quick-contact-buttons .button-primary {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            background-color: var(--primary-red-dark);
+        }
+        .quick-contact-buttons .button-primary:hover {
+            background-color: #B12B1B;
+        }
+
+        /* Serviços Divertidos*/
+        .fun-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            text-align: center;
+            background-color: var(--section-bg-light);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-light);
+        }
+
+        .fun-service-item {
+            padding: 30px;
+            border-radius: 10px;
+            background-color: var(--background-light);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .fun-service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .fun-service-item i {
+            font-size: 3.5em;
+            color: var(--secondary-golden-warm);
+            margin-bottom: 20px;
+        }
+
+        .fun-service-item p {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1.1em;
+        }
+
+        .pako-is-the-guy {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2em;
+            color: var(--primary-red-dark);
+            margin-top: 50px;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Seção de Comentários*/
+        .comments-section {
+            background-color: var(--section-bg-light);
+            padding: 60px 0;
+            box-shadow: var(--shadow-light);
+        }
+
+        .comments-section .comment-form {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: var(--background-light);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .comments-section .comment-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 1.05em;
+        }
+
+        .comments-section .comment-form input[type="text"],
+        .comments-section .comment-form input[type="email"],
+        .comments-section .comment-form textarea {
+            width: calc(100% - 22px); /* Ajuste para padding */
+            padding: 12px 10px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .comments-section .comment-form input[type="text"]:focus,
+        .comments-section .comment-form input[type="email"]:focus,
+        .comments-section .comment-form textarea:focus {
+            border-color: var(--secondary-golden-warm);
+            box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.2);
+            outline: none;
+        }
+
+        .comments-section .comment-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .comments-section .comment-form button {
+            background-color: var(--primary-red-dark);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.15em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .comments-section .comment-form button:hover {
+            background-color: #B12B1B;
+            transform: translateY(-2px);
+        }
+
+        /* Rodapé*/
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 40px;
+            font-size: 0.95em;
+        }
+
+        footer p {
+            margin: 8px 0;
+        }
+
+        footer .whatsapp-link-footer {
+            color: var(--secondary-golden-warm);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        footer .whatsapp-link-footer:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Responsividade*/
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 2.8em; }
+            .hero p { font-size: 1.4em; }
+            h2 { font-size: 2.2em; }
+            .service-highlight-image-wrapper img { max-width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: 10px;
+            }
+            .logo { margin-bottom: 10px; }
+            /* Não há navegação para exibir/ocultar */
+            .hero { padding: 80px 20px; min-height: 400px; }
+            .hero h1 { font-size: 2.5em; }
+            .hero p { font-size: 1.2em; }
+            section { padding: 60px 0; }
+            h2 { font-size: 1.8em; }
+            .service-item, .fun-service-item, .info-card { padding: 30px 20px; }
+            .service-item i, .fun-service-item i { font-size: 3.5em; }
+            .price-table th, .price-table td { padding: 12px; font-size: 0.95em; }
+            .quick-contact-buttons .button-primary { padding: 12px 25px; font-size: 1em; }
+            .whatsapp-fixed-button {
+                width: 55px;
+                height: 55px;
+                font-size: 2em;
+                bottom: 15px;
+                right: 15px;
+            }
+            .comments-section .comment-form input[type="text"],
+            .comments-section .comment-form input[type="email"],
+            .comments-section .comment-form textarea { width: calc(100% - 20px); }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2em; }
+            .hero p { font-size: 1em; }
+            .button-primary { padding: 12px 25px; font-size: 1em; }
+            .logo { font-size: 1.6em; }
+            .comments-section .comment-form input[type="text"],
+            .comments-section .comment-form input[type="email"],
+            .comments-section .comment-form textarea { width: calc(100% - 16px); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#inicio" class="logo">PaKo Faz Tudo</a>
+            </div>
+    </header>
+
+    <a href="https://wa.me/5547997607835" target="_blank" class="whatsapp-fixed-button" aria-label="Fale conosco no WhatsApp">
+        <img src="file_content/1" alt="Foto de perfil profissional para WhatsApp">
+    </a>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="container">
+                <h1>PaKo Faz Tudo – Marido de Aluguel</h1>
+                <p>"Precisa de ajuda agora? O PaKo resolve!"</p>
+                <a href="https://wa.me/5547997607835" target="_blank" class="button-primary">
+                    <i class="fab fa-whatsapp"></i> Chamar no WhatsApp – (47) 99760-7835
+                </a>
+            </div>
+        </section>
+
+        <section id="servicos">
+            <div class="container">
+                <h2>Nossos Serviços</h2>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Serviços Elétricos</h3>
+                        <p>Instalação e reparo de tomadas, interruptores, chuveiros, luminárias e fiações. Segurança e eficiência para sua casa.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-faucet"></i>
+                        <h3>Serviços Hidráulicos</h3>
+                        <p>Reparos em torneiras, vasos sanitários, encanamentos, vazamentos e desentupimentos. Soluções rápidas para sua paz de espírito.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-door-closed"></i>
+                        <h3>Portas, Janelas e Fechaduras</h3>
+                        <p>Ajuste de portas e janelas, troca e reparo de fechaduras, dobradiças e trincos. Segurança e funcionalidade garantidas.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-hard-hat"></i>
+                        <h3>Alvenaria e Telhados</h3>
+                        <p>Pequenos reparos em paredes, rejuntes, fixação de telhas e consertos em geral. Mantemos seu lar seguro e bonito.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-paint-roller"></i>
+                        <h3>Pintura e Texturas</h3>
+                        <p>Pintura de paredes, tetos, portas e portões, aplicação de texturas e retoques. Um toque novo para seus ambientes.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-tools"></i>
+                        <h3>Instalações Diversas</h3>
+                        <p>Instalação de prateleiras, quadros, suportes para TV, espelhos, varais e outros itens. Tudo no lugar certo e com segurança.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-hammer"></i>
+                        <h3>Marcenaria Leve</h3>
+                        <p>Montagem e desmontagem de móveis simples, ajustes em portas de armários, gavetas e pequenos reparos em madeira.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-car-crash"></i>
+                        <h3>Serviços de Socorro</h3>
+                        <p>Ajuda com pneus furados, bateria descarregada, falta de combustível e outros imprevistos no trânsito.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-laugh-squint"></i>
+                        <h3>Serviços Divertidos</h3>
+                        <p>Precisa de um goleiro pro time? O assador faltou no churrasco? Quer dicas de filmes? O PaKo é o cara certo!</p>
+                    </div>
+                </div>
+                <div class="service-highlight-image-wrapper">
+                    <img src="file_content/2" alt="Profissional instalando chuveiro">
+                </div>
+            </div>
+        </section>
+
+        <section id="tabela-precos">
+            <div class="container price-table-container">
+                <h2>Tabela de Preços Populares</h2>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Serviço</th>
+                            <th>Preço (BRL)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Troca de resistência</td><td>R$ 50</td></tr>
+                        <tr><td>Troca de chuveiro</td><td>R$ 50</td></tr>
+                        <tr><td>Troca de torneira</td><td>R$ 50</td></tr>
+                        <tr><td>Troca de pneus</td><td>R$ 30</td></tr>
+                        <tr><td>Levar combustível</td><td>R$ 30</td></tr>
+                        <tr><td>Fazer carro funcionar (empurrão)</td><td>R$ 30</td></tr>
+                        <tr><td>Pequenos serviços diversos</td><td>R$ 30</td></tr>
+                        <tr><td>Ajuda para mudanças</td><td>R$ 30/h</td></tr>
+                        <tr><td>Troca de fechaduras padrão</td><td>R$ 50</td></tr>
+                    </tbody>
+                </table>
+                <p class="note">⚠️ Valores válidos apenas para casos simples, sem complicações extras.</p>
+            </div>
+        </section>
+
+        <section id="emergencia">
+            <div class="container info-card">
+                <h2>Horários & Emergências</h2>
+                <p><strong>Horário padrão de atendimento:</strong> Segunda a sexta, das 08:00 às 12:00 e das 13:30 às 17:30</p>
+                <p><strong>Emergência 24h com taxa adicional</strong></p>
+                <a href="https://wa.me/5547997607835" target="_blank" class="button-primary">
+                    <i class="fab fa-whatsapp"></i> Socorro! Preciso de ajuda agora
+                </a>
+            </div>
+        </section>
+
+        <section class="area-of-operation">
+            <div class="container info-card">
+                <h2>Área de Atuação</h2>
+                <p><i class="fas fa-map-marker-alt"></i>Atendemos São Bento do Sul - SC.</p>
+                <p><i class="fas fa-map-signs"></i>Cidades vizinhas (Campo Alegre e Rio Negrinho) sob consulta.</p>
+            </div>
+        </section>
+
+        <section id="quem-somos">
+            <div class="container info-card">
+                <h2>Quem Somos</h2>
+                <p>O PaKo Faz Tudo conecta você com profissionais habilitados e selecionados para serviços gerais rápidos e eficazes. Atuamos como centro de soluções domésticas, direcionando tarefas a profissionais e MEIs experientes para avaliação, execução e suporte.</p>
+            </div>
+        </section>
+
+        <section id="comentarios" class="comments-section">
+            <div class="container">
+                <h2>Deixe seu Comentário</h2>
+                <div class="comment-form">
+                    <p>Sua opinião é muito importante para nós!</p>
+                    <form action="mailto:seuemail@exemplo.com" method="post" enctype="text/plain">
+                        <label for="nome">Seu Nome:</label>
+                        <input type="text" id="nome" name="nome" required>
+
+                        <label for="email">Seu Email:</label>
+                        <input type="email" id="email" name="email" required>
+
+                        <label for="comentario">Seu Comentário:</label>
+                        <textarea id="comentario" name="comentario" required></textarea>
+
+                        <button type="submit">Enviar Comentário</button>
+                    </form>
+                    <p style="font-size: 0.85em; color: var(--text-light); margin-top: 15px; text-align: center;">
+                        *Ao enviar, este formulário tentará abrir seu programa de e-mail padrão. Para envio automático, um sistema de backend é necessário.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato">
+            <div class="container">
+                <h2>Contato Rápido</h2>
+                <div class="quick-contact-buttons">
+                    <a href="https://wa.me/5547997607835" target="_blank" class="button-primary">
+                        <i class="fab fa-whatsapp"></i> Clientes
+                    </a>
+                    <a href="https://wa.me/5547997607835?text=Ol%C3%A1%2C+gostaria+de+trabalhar+com+o+PaKo+Faz+Tudo!" target="_blank" class="button-primary">
+                        <i class="fab fa-whatsapp"></i> Profissionais interessados
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="fun-services">
+            <div class="container">
+                <h2>Serviços Divertidos</h2>
+                <div class="fun-services-grid">
+                    <div class="fun-service-item">
+                        <i class="fas fa-futbol"></i>
+                        <p>Precisa de um goleiro pro time?</p>
+                    </div>
+                    <div class="fun-service-item">
+                        <i class="fas fa-hamburger"></i>
+                        <p>O assador faltou no churrasco?</p>
+                    </div>
+                    <div class="fun-service-item">
+                        <i class="fas fa-film"></i>
+                        <p>Quer dicas de filmes, livros ou séries?</p>
+                    </div>
+                    <div class="fun-service-item">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <p>Precisa de apoio moral pra teorias malucas?</p>
+                    </div>
+                </div>
+                <p class="pako-is-the-guy">🧠 O PaKo é o cara certo!</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>WhatsApp: <a href="https://wa.me/5547997607835" target="_blank" class="whatsapp-link-footer">(47) 99760-7835</a></p>
+            <p>Atendemos em: São Bento do Sul, Campo Alegre* e Rio Negrinho*</p>
+            <p>Emergências: 24h com taxa adicional</p>
+            <p>&copy; 2025 PaKo Faz Tudo. Todos os direitos reservados.</p>
+            <p>Uma solução pra cada problema.</p>
+        </div>
+    </footer>
+</body>
+</html>
