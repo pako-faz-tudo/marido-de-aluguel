@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Variáveis CSS para cores*/
+        /* Variáveis CSS para cores */
         :root {
             --primary-red-dark: #941B0C; /* Vermelho escuro para destaques */
             --secondary-golden-warm: #DAA520; /* Dourado/Amarelo quente, ligeiramente mais escuro para elegância */
@@ -25,7 +25,7 @@
             --accent-blue: #007bff; /* Um toque de azul para links ou elementos extras, se necessário */
         }
 
-        /* Reset e base*/
+        /* Reset e base */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -36,14 +36,14 @@
             scroll-behavior: smooth; /* Rolagem suave para âncoras */
         }
 
-        /* Utilitários*/
+        /* Utilitários */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* Cabeçalho*/
+        /* Cabeçalho */
         header {
             background-color: var(--header-bg);
             padding: 15px 0;
@@ -55,7 +55,7 @@
 
         .header-content {
             display: flex;
-            justify-content: flex-start; /* Alinha o logo à esquerda */
+            justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
@@ -73,12 +73,31 @@
             color: var(--secondary-golden-warm);
         }
 
-        /* Navegação (Removida do HTML, mas mantida no CSS para referência se necessário) */
-        nav {
-            display: none; /* Oculta a navegação no cabeçalho */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
         }
 
-        /* Botão WhatsApp Fixo no canto inferior direito*/
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.05em;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            padding-bottom: 3px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-red-dark);
+            border-bottom: 2px solid var(--primary-red-dark);
+        }
+
+        /* Botão WhatsApp Fixo no canto inferior direito */
         .whatsapp-fixed-button {
             position: fixed;
             bottom: 25px;
@@ -111,7 +130,7 @@
             border: 2px solid white;
         }
 
-        /* Seção Hero (Banner Principal)*/
+        /* Seção Hero (Banner Principal) */
         .hero {
             position: relative;
             text-align: center;
@@ -128,8 +147,8 @@
 
         .hero::before {
             content: "";
-            /* IMAGEM DO BANNER: SUBSTITUA AQUI POR 'banner-help.jpg' APÓS SALVAR SUA IMAGEM */
-            background-image: url('https://picsum.photos/1920/1080?random=1'); 
+            /* CORREÇÃO: Usando a imagem local 1.jpg para o banner */
+            background-image: url('1.jpg'); 
             background-size: cover;
             background-position: center;
             position: absolute;
@@ -179,7 +198,7 @@
             transform: translateY(-2px);
         }
 
-        /* Seções de Conteúdo*/
+        /* Seções de Conteúdo */
         section {
             padding: 80px 0;
             background-color: var(--section-bg-light);
@@ -213,7 +232,7 @@
             border-radius: 2px;
         }
 
-        /* Seção de Serviços*/
+        /* Seção de Serviços */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -268,7 +287,7 @@
             margin: 0 auto; /* Centraliza a imagem */
         }
 
-        /* Tabela de Preços*/
+        /* Tabela de Preços */
         .price-table-container {
             background-color: var(--section-bg-light);
             padding: 40px;
@@ -315,7 +334,7 @@
             border-radius: 5px;
         }
 
-        /* Cards de Informação (Horários, Área, Quem Somos)*/
+        /* Cards de Informação (Horários, Área, Quem Somos) */
         .info-card {
             background-color: var(--section-bg-light);
             padding: 40px;
@@ -336,7 +355,7 @@
             font-size: 1.2em;
         }
 
-        /* Contato Rápido*/
+        /* Contato Rápido */
         .quick-contact-buttons {
             display: flex;
             justify-content: center;
@@ -353,7 +372,7 @@
             background-color: #B12B1B;
         }
 
-        /* Serviços Divertidos*/
+        /* Serviços Divertidos */
         .fun-services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -400,7 +419,7 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
 
-        /* Seção de Comentários*/
+        /* Seção de Comentários */
         .comments-section {
             background-color: var(--section-bg-light);
             padding: 60px 0;
@@ -468,7 +487,7 @@
             transform: translateY(-2px);
         }
 
-        /* Rodapé*/
+        /* Rodapé */
         footer {
             background-color: var(--footer-bg);
             color: white;
@@ -494,7 +513,7 @@
             text-decoration: underline;
         }
 
-        /* Responsividade*/
+        /* Responsividade */
         @media (max-width: 900px) {
             .hero h1 { font-size: 2.8em; }
             .hero p { font-size: 1.4em; }
@@ -509,7 +528,14 @@
                 padding-bottom: 10px;
             }
             .logo { margin-bottom: 10px; }
-            /* Não há navegação para exibir/ocultar */
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                gap: 10px;
+            }
+            nav ul li { margin: 0; }
+            nav ul li a { padding: 8px 0; display: block; }
             .hero { padding: 80px 20px; min-height: 400px; }
             .hero h1 { font-size: 2.5em; }
             .hero p { font-size: 1.2em; }
@@ -546,11 +572,22 @@
     <header>
         <div class="container header-content">
             <a href="#inicio" class="logo">PaKo Faz Tudo</a>
-            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#tabela-precos">Preços</a></li>
+                    <li><a href="#emergencia">Emergência</a></li>
+                    <li><a href="#quem-somos">Quem Somos</a></li>
+                    <li><a href="#comentarios">Comentários</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <a href="https://wa.me/5547997607835" target="_blank" class="whatsapp-fixed-button" aria-label="Fale conosco no WhatsApp">
-        <img src="file_content/1" alt="Foto de perfil profissional para WhatsApp">
+        <img src="1.jpg" alt="Foto de perfil profissional para WhatsApp">
     </a>
 
     <main>
@@ -615,7 +652,7 @@
                     </div>
                 </div>
                 <div class="service-highlight-image-wrapper">
-                    <img src="file_content/2" alt="Profissional instalando chuveiro">
+                    <img src="2.jpg" alt="Profissional instalando chuveiro">
                 </div>
             </div>
         </section>
