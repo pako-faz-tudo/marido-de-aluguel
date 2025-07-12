@@ -10,19 +10,19 @@
     <style>
         /* Variáveis CSS para cores */
         :root {
-            --primary-red-dark: #941B0C; /* Vermelho escuro para destaques */
-            --secondary-golden-warm: #DAA520; /* Dourado/Amarelo quente, ligeiramente mais escuro para elegância */
-            --background-light: #F8F8F8; /* Bege muito claro, quase branco */
-            --text-dark: #333333; /* Texto principal mais escuro */
-            --text-light: #666666; /* Texto secundário */
-            --header-bg: #FFFFFF; /* Fundo do cabeçalho */
-            --section-bg-light: #FFFFFF; /* Fundo de seções claras */
-            --footer-bg: #2C3E50; /* Azul marinho escuro para o rodapé (inspirado BB) */
-            --button-whatsapp: #25D366; /* Verde WhatsApp */
+            --primary-red-dark: #941B0C;
+            --secondary-golden-warm: #DAA520;
+            --background-light: #F8F8F8;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --header-bg: #FFFFFF;
+            --section-bg-light: #FFFFFF;
+            --footer-bg: #2C3E50;
+            --button-whatsapp: #25D366;
             --button-whatsapp-hover: #1DA851;
-            --border-color: #E0E0E0; /* Cor de borda suave */
-            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra mais suave */
-            --accent-blue: #007bff; /* Um toque de azul para links ou elementos extras, se necessário */
+            --border-color: #E0E0E0;
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --accent-blue: #007bff;
         }
 
         /* Reset e base */
@@ -33,7 +33,7 @@
             background-color: var(--background-light);
             color: var(--text-dark);
             line-height: 1.6;
-            scroll-behavior: smooth; /* Rolagem suave para âncoras */
+            scroll-behavior: smooth;
         }
 
         /* Utilitários */
@@ -73,30 +73,6 @@
             color: var(--secondary-golden-warm);
         }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            font-size: 1.05em;
-            transition: color 0.3s ease, border-bottom 0.3s ease;
-            padding-bottom: 3px;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-red-dark);
-            border-bottom: 2px solid var(--primary-red-dark);
-        }
-
         /* Botão WhatsApp Fixo no canto inferior direito */
         .whatsapp-fixed-button {
             position: fixed;
@@ -114,7 +90,7 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
             z-index: 1001;
             transition: transform 0.3s ease, background-color 0.3s ease;
-            text-decoration: none; /* Remover sublinhado */
+            text-decoration: none;
         }
 
         .whatsapp-fixed-button:hover {
@@ -141,13 +117,13 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background-color: rgba(0, 0, 0, 0.6); /* Overlay escuro */
-            min-height: 500px; /* Altura mínima para o banner */
+            background-color: rgba(0, 0, 0, 0.6);
+            min-height: 500px;
         }
 
         .hero::before {
             content: "";
-            /* CORREÇÃO: Usando a imagem local 1.jpg para o banner */
+            /* Usando a imagem local 1.jpg para o banner */
             background-image: url('1.jpg'); 
             background-size: cover;
             background-position: center;
@@ -157,7 +133,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            filter: brightness(0.6); /* Escurece a imagem de fundo para texto legível */
+            filter: brightness(0.6);
         }
 
         .hero h1 {
@@ -187,7 +163,7 @@
             font-size: 1.3em;
             transition: background-color 0.3s ease, transform 0.2s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            display: flex; /* Para alinhar o ícone com o texto */
+            display: flex;
             align-items: center;
             gap: 10px;
             justify-content: center;
@@ -204,11 +180,11 @@
             background-color: var(--section-bg-light);
             margin-bottom: 20px;
             box-shadow: var(--shadow-light);
-            border-radius: 12px; /* Borda arredondada para todas as seções */
-            overflow: hidden; /* Garante que o box-shadow se aplique corretamente */
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        section:nth-of-type(even) { /* Cores alternadas para melhor legibilidade */
+        section:nth-of-type(even) {
             background-color: var(--background-light);
         }
 
@@ -283,8 +259,8 @@
             border-radius: 15px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             border: 5px solid var(--secondary-golden-warm);
-            display: block; /* Remove espaço extra abaixo da imagem */
-            margin: 0 auto; /* Centraliza a imagem */
+            display: block;
+            margin: 0 auto;
         }
 
         /* Tabela de Preços */
@@ -329,7 +305,7 @@
             text-align: center;
             margin-top: 20px;
             padding: 15px;
-            background-color: #FFF3CD; /* Amarelo claro para destaque da nota */
+            background-color: #FFF3CD;
             border-left: 5px solid #FFC107;
             border-radius: 5px;
         }
@@ -447,7 +423,7 @@
         .comments-section .comment-form input[type="text"],
         .comments-section .comment-form input[type="email"],
         .comments-section .comment-form textarea {
-            width: calc(100% - 22px); /* Ajuste para padding */
+            width: calc(100% - 22px);
             padding: 12px 10px;
             margin-bottom: 20px;
             border: 1px solid var(--border-color);
@@ -528,14 +504,6 @@
                 padding-bottom: 10px;
             }
             .logo { margin-bottom: 10px; }
-            nav ul {
-                flex-direction: column;
-                width: 100%;
-                text-align: center;
-                gap: 10px;
-            }
-            nav ul li { margin: 0; }
-            nav ul li a { padding: 8px 0; display: block; }
             .hero { padding: 80px 20px; min-height: 400px; }
             .hero h1 { font-size: 2.5em; }
             .hero p { font-size: 1.2em; }
@@ -572,18 +540,7 @@
     <header>
         <div class="container header-content">
             <a href="#inicio" class="logo">PaKo Faz Tudo</a>
-            <nav>
-                <ul>
-                    <li><a href="#inicio">Início</a></li>
-                    <li><a href="#servicos">Serviços</a></li>
-                    <li><a href="#tabela-precos">Preços</a></li>
-                    <li><a href="#emergencia">Emergência</a></li>
-                    <li><a href="#quem-somos">Quem Somos</a></li>
-                    <li><a href="#comentarios">Comentários</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                </ul>
-            </nav>
-        </div>
+            </div>
     </header>
 
     <a href="https://wa.me/5547997607835" target="_blank" class="whatsapp-fixed-button" aria-label="Fale conosco no WhatsApp">
